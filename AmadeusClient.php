@@ -31,7 +31,6 @@ class SelfServiceApiClient{
         'viewBy',
       ],
       'defaults' => [
-        'currency'      => 'EUR',
       ],
     ],
     'lowFares' => [
@@ -58,8 +57,6 @@ class SelfServiceApiClient{
         'max',
       ],
       'defaults' => [
-        'currency'      => 'EUR',
-        'max'           => 20, // max results
       ],
     ],
     'flightDate' => [
@@ -78,7 +75,6 @@ class SelfServiceApiClient{
         'viewBy',
       ],
       'defaults' => [
-        'currency'      => 'EUR',
       ],
     ],
     'mostSearched' => [
