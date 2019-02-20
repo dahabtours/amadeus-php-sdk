@@ -331,6 +331,7 @@ class SelfServiceApiClient{
 
           if($return_data['response_text']){
 
+            $return_data['success'] = true;
             $return_data['response'] = json_decode($return_data['response_text'], true);
 
           }
