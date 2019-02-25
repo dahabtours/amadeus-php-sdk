@@ -1,5 +1,5 @@
 {
-    "name": "dahabtours/AmadeusClient",
+    "name": "dahabtours/amadeusclient",
     "description": "A client to utilize the new (as of 2019) amadeus REST/JSON API",
     "type": "library",
     "license": "MIT License",

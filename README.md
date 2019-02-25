@@ -2,7 +2,7 @@
 
 A simple API wrapper for integrating the Amadeus Self service APIs provided by dahabtours GmbH.
 Currently all resources of the "AIR" section are covered.
-mandatory parameters will be checked. 
+mandatory parameters will be checked.
 See the documentation for more information on the parameters.
 https://developers.amadeus.com/self-service
 
@@ -10,29 +10,39 @@ https://developers.amadeus.com/self-service
 
 See the official documentation for more information.
 
-'flightInspiration'
-'lowFares'
-'flightDate'
-'mostSearched'
-'mostSearchedByDestination'
-'mostTraveled'
-'mostBooked'
-'busiestPeriod'
-'checkinLinks'
-'nearestAirports'
-'locations'
-'airlines'
+* flightInspiration
+* lowFares
+* flightDate
+* mostSearched
+* mostSearchedByDestination
+* mostTraveled
+* mostBooked
+* busiestPeriod
+* checkinLinks
+* nearestAirports
+* locations
+* airlines
+* hotelOffers
+* hotelOfferByHotel
+* hotelOffer
 
 
 ## Example
 
-```
-$amadeus_api = new AmadeusDahabtours\SelfServiceApiClient({CLIENT_ID}, {CLIENT_SECRET});
+```php
+require('AmadeusClient.php');
+$amadeus_api = new AmadeusDahabtours\SelfServiceApiClient({API_KEY},{API_SECRET});
 
+// Flight Low-fare Search 
 $amadeus_results = $amadeus_api->lowFares([
     'origin'        => 'FRA',
     'destination'   => 'CAI',
-    'departureDate' => '2019-07-15',
+    'departureDate' => '2019-07-15'
+]);
+
+// Hotel Search
+$hotel_search = $amadeus_api->hotelOffers([
+    'cityCode'        => 'LON'
 ]);
 ```
 
@@ -42,4 +52,4 @@ MIT license
 
 ## Contribute
 
-Feel free to submit pull requests, e.g. enhance the resource array by functions from the "Hotel" section (you mainly need to provide a function name as key, the resource url and parameters).
+Feel free to contribute by Pull Requests.

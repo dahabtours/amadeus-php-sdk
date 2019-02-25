@@ -19,7 +19,7 @@ class SelfServiceApiClient{
     'flightInspiration' => [
       'url_path' => '/v1/shopping/flight-destinations',
       'required_parameters' => [
-        'origin',
+        'origin'
       ],
       'parameters' => [
         'departureDate',
@@ -28,7 +28,7 @@ class SelfServiceApiClient{
         'nonStop',
         'maxPrice',
         'currency',
-        'viewBy',
+        'viewBy'
       ],
       'defaults' => [
       ],
@@ -54,7 +54,7 @@ class SelfServiceApiClient{
         'nonStop',
         'currency',
         'maxPrice',
-        'max',
+        'max'
       ],
       'defaults' => [
       ],
@@ -72,7 +72,7 @@ class SelfServiceApiClient{
         'nonStop',
         'maxPrice',
         'currency',
-        'viewBy',
+        'viewBy'
       ],
       'defaults' => [
       ],
@@ -82,13 +82,13 @@ class SelfServiceApiClient{
       'required_parameters' => [
         'originCityCode',
         'marketCountryCode',
-        'searchPeriod',
+        'searchPeriod'
       ],
       'parameters' => [
         'max',
         'fields',
         'page[limit]',
-        'page[offset]',
+        'page[offset]'
       ],
       'defaults' => [
       ],
@@ -99,7 +99,7 @@ class SelfServiceApiClient{
         'originCityCode',
         'destinationCityCode',
         'marketCountryCode',
-        'searchPeriod',
+        'searchPeriod'
       ],
       'parameters' => [
         'fields'
@@ -111,14 +111,14 @@ class SelfServiceApiClient{
       'url_path' => '/v1/analytics/air-traffic/traveled',
       'required_parameters' => [
         'originCityCode',
-        'period',
+        'period'
       ],
       'parameters' => [
         'max',
         'fields',
         'page[limit]',
         'page[offset]',
-        'sort',
+        'sort'
       ],
       'defaults' => [
       ],
@@ -127,14 +127,14 @@ class SelfServiceApiClient{
       'url_path' => '/v1/analytics/air-traffic/booked',
       'required_parameters' => [
         'originCityCode',
-        'period',
+        'period'
       ],
       'parameters' => [
         'max',
         'fields',
         'page[limit]',
         'page[offset]',
-        'sort',
+        'sort'
       ],
       'defaults' => [
       ],
@@ -143,21 +143,21 @@ class SelfServiceApiClient{
       'url_path' => '/v1/analytics/air-traffic/busiest-period',
       'required_parameters' => [
         'cityCode',
-        'period',
+        'period'
       ],
       'parameters' => [
-        'direction',
+        'direction'
       ],
       'defaults' => [
       ],
     ],
     'checkinLinks' => [
-      'url_path' => '/v1/reference-data/urls/checkin-links',
+      'url_path' => '/v2/reference-data/urls/checkin-links',
       'required_parameters' => [
-        'airlineCode',
+        'airlineCode'
       ],
       'parameters' => [
-        'language',
+        'language'
       ],
       'defaults' => [
       ],
@@ -166,13 +166,13 @@ class SelfServiceApiClient{
       'url_path' => '/v1/reference-data/locations/airports',
       'required_parameters' => [
         'latitude',
-        'longitude',
+        'longitude'
       ],
       'parameters' => [
         'radius',
         'page[limit]',
         'page[offset]',
-        'sort',
+        'sort'
       ],
       'defaults' => [
       ],
@@ -181,14 +181,14 @@ class SelfServiceApiClient{
       'url_path' => '/v1/reference-data/locations',
       'required_parameters' => [
         'subType',
-        'keyword',
+        'keyword'
       ],
       'parameters' => [
         'countryCode',
         'page[limit]',
         'page[offset]',
         'sort',
-        'view',
+        'view'
       ],
       'defaults' => [
       ],
@@ -196,11 +196,81 @@ class SelfServiceApiClient{
     'airlines' => [
       'url_path' => '/v1/reference-data/airlines',
       'required_parameters' => [
-        'airlineCodes',
+        'airlineCodes'
       ],
       'parameters' => [
       ],
       'defaults' => [
+      ],
+    ],
+    'hotelOffers' => [
+      'url_path' => '/v2/shopping/hotel-offers',
+      'required_parameters' => [
+      ],
+      'parameters' => [
+        'cityCode',
+        'latitude',
+        'longitude',
+        'hotelIds',
+        'checkInDate',
+        'checkOutDate',
+        'roomQuantity',
+        'adults',
+        'childAges',
+        'radius',
+        'radiusUnit',
+        'hotelName',
+        'chains',
+        'rateCodes',
+        'amenities',
+        'ratings',
+        'priceRange',
+        'currency',
+        'paymentPolicy',
+        'boardType',
+        'includeClosed',
+        'bestRateOnly',
+        'view',
+        'sort',
+        'page[limit]',
+        'page[offset]',
+        'lang'
+      ],
+      'defaults' => [
+      ],
+    ],
+    'hotelOfferByHotel' => [
+      'url_path' => '/v2/shopping/hotel-offers/by-hotel',
+      'required_parameters' => [
+        'hotelId'
+      ],
+      'parameters' => [
+        'checkInDate',
+        'checkOutDate',
+        'adults',
+        'childAges',
+        'rateCodes',
+        'roomQuantity',
+        'currency',
+        'paymentPolicy',
+        'boardType',
+        'view',
+        'lang'
+      ],
+      'defaults' => [
+      ],
+    ],
+    // Not sure how to pass the /v2/shopping/hotel-offers/{offerId} as a URL parameter...
+    'hotelOffer' => [
+      'url_path' => '/v2/shopping/hotel-offers',
+      'required_parameters' => [
+
+      ],
+      'parameters' => [
+        'lang'
+      ],
+      'defaults' => [
+        'offerId'
       ],
     ],
   ];
