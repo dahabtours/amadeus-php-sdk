@@ -196,11 +196,12 @@ class SelfServiceApiClient{
     'location' => [
       'url_path' => '/v1/reference-data/locations/',
       'required_parameters' => [
+        'locationId'
       ],
       'parameters' => [
+        'locationId'
       ],
       'defaults' => [
-        'locationId'
       ],
     ],
     'airlines' => [
@@ -274,13 +275,13 @@ class SelfServiceApiClient{
     'hotelOffer' => [
       'url_path' => '/v2/shopping/hotel-offers',
       'required_parameters' => [
-
+        'offerId'
       ],
       'parameters' => [
+        'offerId',
         'lang'
       ],
       'defaults' => [
-        'offerId'
       ],
     ],
   ];
