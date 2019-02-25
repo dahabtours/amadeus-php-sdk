@@ -12,7 +12,7 @@ See the official documentation for more information.
 
 * flightInspiration
 * lowFares
-* flightDate
+* flightDates
 * mostSearched
 * mostSearchedByDestination
 * mostTraveled
