@@ -3,7 +3,7 @@
 <body>
 <?php
 require('../../AmadeusClient.php');
-$amadeus_api = new AmadeusDahabtours\SelfServiceApiClient("RMsOAC2ZDwN7dDPcSSWL4UjTEzx5Nedo","q4OJj4iW7ruTSjXl");
+$amadeus_api = new AmadeusDahabtours\SelfServiceApiClient({API_KEY},{API_SECRET});
 
 print_r("<h2> Inspiration </h2>");
 # Flight Inspiration Search
