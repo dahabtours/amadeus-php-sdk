@@ -384,7 +384,8 @@ class SelfServiceApiClient{
         $required_parameters = $this->api_resources[$resource_name]['required_parameters'];
 
         // check if all mandatory parameters are present
-        for($i = count($required_parameters); $i >= 0; $i--){
+        $start_offset = (count($required_parameters) - 1);
+        for($i = $start_offset; $i >= 0; $i--){
           if(array_key_exists($required_parameters[$i], $parameters)){
             unset($required_parameters[$i]);
           }
