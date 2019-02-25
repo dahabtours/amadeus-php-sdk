@@ -1,7 +1,7 @@
 # Amadeus PHP SDK
 
 A simple API wrapper for integrating the Amadeus Self service APIs provided by dahabtours GmbH.
-Currently all resources of the "AIR" section are covered.
+All resources of the "AIR" section are covered.
 mandatory parameters will be checked.
 See the documentation for more information on the parameters.
 https://developers.amadeus.com/self-service
@@ -28,7 +28,7 @@ See the official documentation for more information.
 * hotelOffer
 
 
-## Example
+## Examples
 
 ```php
 require('AmadeusClient.php');
