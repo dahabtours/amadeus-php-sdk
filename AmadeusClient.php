@@ -59,7 +59,7 @@ class SelfServiceApiClient{
       'defaults' => [
       ],
     ],
-    'flightDate' => [
+    'flightDates' => [
       'url_path' => '/v1/shopping/flight-dates',
       'required_parameters' => [
         'origin',
@@ -78,7 +78,7 @@ class SelfServiceApiClient{
       ],
     ],
     'mostSearched' => [
-      'url_path' => '/v1/analytics/searched',
+      'url_path' => '/v1/travel/analytics/air-traffic/searched',
       'required_parameters' => [
         'originCityCode',
         'marketCountryCode',
@@ -94,7 +94,7 @@ class SelfServiceApiClient{
       ],
     ],
     'mostSearchedByDestination' => [
-      'url_path' => '/v1/analytics/searched/by-destination',
+      'url_path' => '/v1/travel/analytics/air-traffic/searched/by-destination',
       'required_parameters' => [
         'originCityCode',
         'destinationCityCode',
@@ -108,7 +108,7 @@ class SelfServiceApiClient{
       ],
     ],
     'mostTraveled' => [
-      'url_path' => '/v1/analytics/air-traffic/traveled',
+      'url_path' => '/v1/travel/analytics/air-traffic/traveled',
       'required_parameters' => [
         'originCityCode',
         'period'
@@ -124,7 +124,7 @@ class SelfServiceApiClient{
       ],
     ],
     'mostBooked' => [
-      'url_path' => '/v1/analytics/air-traffic/booked',
+      'url_path' => '/v1/travel/analytics/air-traffic/booked',
       'required_parameters' => [
         'originCityCode',
         'period'
@@ -140,7 +140,7 @@ class SelfServiceApiClient{
       ],
     ],
     'busiestPeriod' => [
-      'url_path' => '/v1/analytics/air-traffic/busiest-period',
+      'url_path' => '/v1/travel/analytics/air-traffic/busiest-period',
       'required_parameters' => [
         'cityCode',
         'period'
@@ -189,6 +189,17 @@ class SelfServiceApiClient{
         'page[offset]',
         'sort',
         'view'
+      ],
+      'defaults' => [
+      ],
+    ],
+    'location' => [
+      'url_path' => '/v1/reference-data/locations/',
+      'required_parameters' => [
+        'locationId'
+      ],
+      'parameters' => [
+        'locationId'
       ],
       'defaults' => [
       ],
@@ -264,13 +275,13 @@ class SelfServiceApiClient{
     'hotelOffer' => [
       'url_path' => '/v2/shopping/hotel-offers',
       'required_parameters' => [
-
+        'offerId'
       ],
       'parameters' => [
+        'offerId',
         'lang'
       ],
       'defaults' => [
-        'offerId'
       ],
     ],
   ];
@@ -326,6 +337,8 @@ class SelfServiceApiClient{
 
       curl_setopt($ch, CURLOPT_POST, true);
 
+      // curl_setopt($ch, CURLOPT_HEADER, true);
+      
       curl_setopt($ch, CURLOPT_POSTFIELDS, $getdata);
     } else {
 
@@ -355,12 +368,18 @@ class SelfServiceApiClient{
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
     $data = curl_exec($ch);
-
+    // Get http code
+    $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     //print_r(curl_getinfo($ch));
 
     curl_close($ch);
 
-    return $data;
+    $response = [
+      'http_code' => $http_code,
+      'body'    => $data
+    ];
+
+    return $response;
   }
 
   /**
@@ -375,6 +394,7 @@ class SelfServiceApiClient{
     $return_data = [
       'success' => false,
       'msgs'    => [],
+      'http_code' => ''
     ];
 
     if(isset($this->api_resources[$resource_name])){
@@ -398,13 +418,13 @@ class SelfServiceApiClient{
 
           $parameters = array_merge($this->api_resources[$resource_name]['defaults'], $parameters);
 
-          $return_data['response_text'] = $this->api_call($this->api_url . $this->api_resources[$resource_name]['url_path'], $parameters);
+          $response = $this->api_call($this->api_url . $this->api_resources[$resource_name]['url_path'], $parameters);
+          $return_data['response_text'] = $response['body'];
+          $return_data['http_code'] = $response['http_code'];
 
           if($return_data['response_text']){
-
             $return_data['success'] = true;
             $return_data['response'] = json_decode($return_data['response_text'], true);
-
           }
 
         } else {
@@ -432,7 +452,7 @@ class SelfServiceApiClient{
       'client_id'     => $this->api_key,
       'client_secret' => $this->api_secret,
       'grant_type'    => 'client_credentials',
-    ], false);
+    ], false)['body'];
 
   
 
