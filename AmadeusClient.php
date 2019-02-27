@@ -194,12 +194,13 @@ class SelfServiceApiClient{
       ],
     ],
     'location' => [
-      'url_path' => '/v1/reference-data/locations/',
+      'url_path' => '/v1/reference-data/locations/{locationId}',
       'required_parameters' => [
+      ],
+      'url_parameters' => [
         'locationId'
       ],
       'parameters' => [
-        'locationId'
       ],
       'defaults' => [
       ],
