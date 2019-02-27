@@ -162,7 +162,7 @@ if($hotel_search_by_hotel['success'] != 1 || $hotel_search_by_hotel['http_code']
 print_r("<h2> Hotel Search #3 </h2>");
 # Confirm the availability of a specific offer
 $hotel_offer = $amadeus_api->hotelOffer([
-    'offerId'        => 'D5BEE9D0D08B6678C2F5FAD910DC110BCDA187D21D4FCE68ED423426D0A246BB'
+    'offerId'        => '0AD7B8A70440C82E32EE1FB53AD80128AA9E952543BBA96F1EBE11624DB47A75'
 ]);
 if($hotel_offer['success'] != 1 || $hotel_offer['http_code'] != 200){
     print_r($hotel_offer);

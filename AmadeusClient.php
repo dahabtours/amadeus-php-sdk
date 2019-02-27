@@ -271,14 +271,14 @@ class SelfServiceApiClient{
       'defaults' => [
       ],
     ],
-    // Not sure how to pass the /v2/shopping/hotel-offers/{offerId} as a URL parameter...
     'hotelOffer' => [
-      'url_path' => '/v2/shopping/hotel-offers',
+      'url_path' => '/v2/shopping/hotel-offers/{offerId}',
       'required_parameters' => [
+      ],
+      'url_parameters' => [
         'offerId'
       ],
       'parameters' => [
-        'offerId',
         'lang'
       ],
       'defaults' => [
@@ -401,6 +401,30 @@ class SelfServiceApiClient{
 
       if(isset($args[0]) && !empty($args[0])){
         $parameters = $args[0];
+
+        $resource_path = $this->api_resources[$resource_name]['url_path'];
+
+        if(isset($this->api_resources[$resource_name]['url_parameters']) && count($this->api_resources[$resource_name]['url_parameters'])){
+          // apply URL parameters to $resource_path
+          // all URL parameters are considered mandatory
+
+          for($i = 0; $i < count($this->api_resources[$resource_name]['url_parameters']); $i++){
+            $url_param_key = $this->api_resources[$resource_name]['url_parameters'][$i];
+            if(array_key_exists($url_param_key, $parameters)){
+
+              $resource_path = str_replace('{' . $url_param_key . '}', urlencode($parameters[$url_param_key]), $resource_path);
+
+              unset( $parameters[$url_param_key] );
+
+            } else {
+
+              $return_data['msgs'][] = 'Required URL Parameter/s Missing. The following mandatory parameter must be provided: "' . $this->api_resources[$resource_name]['url_parameters'][$i] . '".';
+
+              return $return_data;
+            }
+          }
+        }
+
         $required_parameters = $this->api_resources[$resource_name]['required_parameters'];
 
         // check if all mandatory parameters are present
@@ -418,7 +442,7 @@ class SelfServiceApiClient{
 
           $parameters = array_merge($this->api_resources[$resource_name]['defaults'], $parameters);
 
-          $response = $this->api_call($this->api_url . $this->api_resources[$resource_name]['url_path'], $parameters);
+          $response = $this->api_call($this->api_url . $resource_path, $parameters);
           $return_data['response_text'] = $response['body'];
           $return_data['http_code'] = $response['http_code'];
 
