@@ -391,7 +391,7 @@ class SelfServiceApiClient{
    *
    * @return array An array containing a success key, error messages and the api calls response
    */
-  private function __call($resource_name, $args){
+  public function __call($resource_name, $args){
     $return_data = [
       'success' => false,
       'msgs'    => [],
