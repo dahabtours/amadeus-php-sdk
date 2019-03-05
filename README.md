@@ -1,10 +1,24 @@
 # Amadeus PHP SDK
 
-A simple API wrapper for integrating the Amadeus Self service APIs provided by dahabtours GmbH.
+A simple API wrapper for integrating the Amadeus Self service APIs provided by dahabtours GmbH (https://www.dahabtours.de).
 All resources of the "AIR" section are covered.
 mandatory parameters will be checked.
 See the documentation for more information on the parameters.
 https://developers.amadeus.com/self-service
+
+## Installation
+
+### Composer
+
+```
+composer require dahabtours/amadeusclient
+```
+
+### Git
+
+```
+git clone https://github.com/dahabtours/amadeus-php-sdk.git
+```
 
 ## Function names
 
