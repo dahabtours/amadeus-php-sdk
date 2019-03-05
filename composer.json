@@ -1,6 +1,6 @@
 {
     "name": "dahabtours/amadeusclient",
-    "description": "A client to utilize the new (as of 2019) amadeus REST/JSON API",
+    "description": "A client to utilize the amadeus self service flight and hotel search REST/JSON API",
     "type": "library",
     "license": "MIT",
     "authors": [
